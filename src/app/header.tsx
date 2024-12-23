@@ -1,3 +1,4 @@
+"use client"
 import {
   Sheet,
   SheetClose,
@@ -5,6 +6,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { AlignJustify } from "lucide-react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 export default function Header() {
@@ -14,6 +16,9 @@ export default function Header() {
     { name: "Blogs", path: "/blogs" },
     { name: "Contact", path: "/contact" },
   ];
+
+  const pathname = usePathname();
+
   return (
     <section className="flex justify-around items-center h-[6rem] backdrop-blur-sm mx-auto bg-transparent fixed top-0 left-0 right-0 z-50">
       <div className="mr-32 lg:mr-0 text-white text-2xl font-extrabold">
@@ -27,11 +32,22 @@ export default function Header() {
             <li>
               <Link
                 href={link.path}
+                aria-current={pathname === link.path ? "page" : undefined}
                 className="p-4 px-6 text-white hover:text-gray-500 rounded-lg transition duration-300 ease-in-out relative group"
               >
-                {link.name}
+               <span
+                  className={`${
+                    pathname === link.path ? "font-bold text-gray-500" : ""
+                  }`}
+                >
+                  {link.name}
+                </span>
 
-                <span className="absolute left-0 bottom-0 h-[2px] transition-all duration-300 ease-in-out w-0 bg-transparent group-hover:w-full group-hover:bg-gray-700"></span>
+                <span className={`absolute left-0 bottom-0 h-[2px] transition-all duration-300 ease-in-out  ${
+                    pathname === link.path
+                      ? "w-full bg-gray-500"
+                      : "w-0 bg-transparent group-hover:w-full group-hover:bg-gray-700"
+                  } `}></span>
               </Link>
             </li>
           </ul>
@@ -39,6 +55,9 @@ export default function Header() {
       </div>
 
       {/* Mobile Navigation */}
+    
+    
+    
       <div className="md:hidden m-6">
         <Sheet>
           <SheetTrigger asChild>

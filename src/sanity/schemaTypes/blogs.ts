@@ -18,6 +18,43 @@ export default {
         type: "datetime",
         title: "Date Posted",
       },
+      {
+        name: "image",
+        title: "Image",
+        type: "image",
+        options: {
+          hotspot: true, // Enables cropping and focal point selection
+        },
+      },
+      {
+        name: "comments",
+        type: "array",
+        title: "Comments",
+        of: [
+          {
+            type: "object",
+            title: "Comment",
+            fields: [
+              {
+                name: "name",
+                type: "string",
+                title: "Name",
+              },
+              {
+                name: "message",
+                type: "text",
+                title: "Message",
+              },
+              {
+                name: "date",
+                type: "datetime",
+                title: "Date",
+                options: { default: new Date().toISOString() },
+              },
+            ],
+          },
+        ],
+      },
     ],
   };
   
