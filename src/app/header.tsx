@@ -66,7 +66,7 @@ export default function Header() {
 
           <SheetContent
             side="top"
-            className="p-8 pt-10 bg-gradient-to-br from-gray-300 via-gray to-black h-[50%] flex flex-col"
+            className="p-8 pt-10 bg-white/80 h-[50%] flex flex-col"
           >
             {navLinks.map((link) => (
               <SheetClose asChild key={link.name}>

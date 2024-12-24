@@ -1,10 +1,7 @@
 "use client";
-import Image from "next/image";
 
 import { client } from "@/sanity/lib/client";
 import { useEffect, useState } from "react";
-import Link from "next/link";
-import { ArrowRight, Eye, Heart, MessageCircle } from "lucide-react";
 import Cards from "./cards";
 import { Button } from "@/components/ui/button";
 import Loader from "./loader";
