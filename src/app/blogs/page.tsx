@@ -2,8 +2,9 @@
 
 import { client } from "@/sanity/lib/client";
 import React, { useEffect, useState } from "react";
-import Loader from "../loader";
-import Cards from "../cards";
+import Loader from "@/components/loader";
+import Cards from "../../components/cards";
+import Slider from "@/components/slider";
 
 type Blog = {
   _id: string;
@@ -14,6 +15,8 @@ type Blog = {
 };
 
 export default function Blogs() {
+  const blogImages = ["/slider1blogs.jpg", "/slider2blogs.jpg", "/slider3blogs.jpg"];
+
   const [blogs, setBlogs] = useState<Blog[]>([]); // State to store fetched blogs
 
   useEffect(() => {
@@ -39,13 +42,17 @@ export default function Blogs() {
   }, []); // Empty dependency array ensures it runs once on mount
 
   return (
+    <>
+    <Slider images={blogImages} />
     <div className="md:px-14 px-2 py-8 md:pt-28 pt-12 bg-gray-200">
-      <h1 className="text-3xl font-bold mb-6 text-center">All Blogs</h1>
+      <h1 className="mb-6 text-center text-4xl font-bold text-gray-800 sm:text-5xl">All Blogs</h1>
       {blogs.length > 0 ? (
         <Cards blogs={blogs}/>
       ) : (
         <Loader/>
       )}
     </div>
+    </>
+            
   );
 }

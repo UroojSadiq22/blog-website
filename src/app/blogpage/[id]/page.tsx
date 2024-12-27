@@ -3,7 +3,7 @@ import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import Loader from "@/app/loader";
+import Loader from "@/components/loader";
 import { Button } from "@/components/ui/button";
 
 type Blog = {
@@ -71,18 +71,18 @@ export default function BlogPage() {
 
   return (
     <div className="md:px-14 px-2 py-8 md:pt-28 pt-20 bg-gray-200 flex flex-col items-center">
-      <h1 className="text-3xl font-bold mb-6 text-center">{blog.title}</h1>
+      <h1 className=" mb-6 text-center text-3xl font-bold text-gray-800 sm:text-5xl">{blog.title}</h1>
       <p className="text-gray-600 text-sm mb-4">
         Posted on: {new Date(blog.datePosted).toLocaleDateString()}
       </p>
       <Image
         src={blog.imageUrl}
         alt={blog.title}
-        width={400}
+        width={500}
         height={300}
         className="rounded-lg"
       />
-      <p className="text-gray-700 p-2 w-full max-w-[30rem] text-center">
+      <p className="text-gray-700 p-2 w-full max-w-[60rem]">
         {blog.description}
       </p>
 
