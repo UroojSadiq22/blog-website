@@ -211,9 +211,6 @@ type ToasterToast = ToastProps & {
   action?: ToastActionElement;
 };
 
-// Use string literals directly for action types
-type ActionTypes = "ADD_TOAST" | "UPDATE_TOAST" | "DISMISS_TOAST" | "REMOVE_TOAST";
-
 let count = 0;
 
 function genId() {
