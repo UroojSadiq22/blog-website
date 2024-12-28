@@ -1,5 +1,7 @@
 "use client"
 import Slider from '@/components/slider';
+import { useToast } from '@/hooks/use-toast';
+import { Mail, Phone } from 'lucide-react';
 import { ChangeEvent, FormEvent, useState } from 'react';
 
 export default function Contact(){
@@ -22,45 +24,57 @@ export default function Contact(){
         });
       };
     
+      const { toast } = useToast()
+
+      const showToast = () => {
+        
+            
+              toast({
+          description: "Your message has been sent.",
+        })
+        
+        
+        
+      }
+
       const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Simulate form submission
-        setFormStatus('Sending...');
-        setTimeout(() => {
-          setFormStatus('Message sent successfully!');
+       showToast()
           setFormData({ name: '', email: '', message: '' });
-        }, 2000);
+       
       };
+
+     
     return(
         <main>
                     <Slider images={contactImages} />
-            <div className="min-h-screen bg-gray-50 py-12 sm:py-16 lg:py-24">
+            <div className="min-h-screen bg-gray-300 py-12 sm:py-14">
       <div className="container mx-auto px-6 lg:px-8">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-800 sm:text-5xl">
+          <h1 className="text-4xl font-bold text-black/70 sm:text-5xl">
             Get in Touch with Us
           </h1>
-          <p className="mt-4 text-lg text-gray-600">
-            We’d love to hear from you! Whether you have a question, feedback, or just want to connect, feel free to reach out.
+          <p className="mt-4 text-lg text-gray-800">
+            We&apos;d love to hear from you! Whether you have a question, feedback, or just want to connect, feel free to reach out.
           </p>
         </div>
 
        
 
-        <div className='flex md:flex-row-reverse flex-col justify-center px-14'>
+        <div className='flex md:flex-row-reverse flex-col justify-center md:items-start lg:px-24'>
 
  {/* Contact Form */}
  <div className="flex justify-center flex-1">
           <form
             onSubmit={handleSubmit}
-            className="w-full max-w-lg bg-white p-8 rounded-lg shadow-xl space-y-6"
+            className="w-full max-w-lg bg-black/80 md:p-8 p-4 rounded-lg shadow-xl space-y-6"
           >
             {/* Name Field */}
             <div>
               <label
                 htmlFor="name"
-                className="block text-lg font-semibold text-gray-700"
+                className="block text-lg font-semibold text-white/80"
               >
                 Full Name
               </label>
@@ -70,7 +84,7 @@ export default function Contact(){
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className="mt-2 w-full p-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="mt-2 w-full p-2 bg-gray-500 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-gray-200"
                 placeholder="Enter your name"
                 required
               />
@@ -80,7 +94,7 @@ export default function Contact(){
             <div>
               <label
                 htmlFor="email"
-                className="block text-lg font-semibold text-gray-700"
+                className="block text-lg font-semibold text-white/80"
               >
                 Email Address
               </label>
@@ -90,7 +104,7 @@ export default function Contact(){
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="mt-2 w-full p-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="mt-2 w-full p-2 bg-gray-500 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-gray-200"
                 placeholder="Enter your email"
                 required
               />
@@ -100,7 +114,7 @@ export default function Contact(){
             <div>
               <label
                 htmlFor="message"
-                className="block text-lg font-semibold text-gray-700"
+                className="block text-lg font-semibold text-white/80"
               >
                 Your Message
               </label>
@@ -110,7 +124,7 @@ export default function Contact(){
                 value={formData.message}
                 onChange={handleInputChange}
                 rows={6}
-                className="mt-2 w-full p-3 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="mt-2 w-full p-2 bg-gray-500 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-gray-200"
                 placeholder="Type your message here"
                 required
               />
@@ -120,34 +134,29 @@ export default function Contact(){
             <div className="text-center">
               <button
                 type="submit"
-                className="w-full px-6 py-3 text-lg font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="text-center py-2 rounded-lg w-full bg-white hover:bg-blue-400 border-2 border-gray-400 font-semibold"
               >
                 Send Message
               </button>
             </div>
           </form>
 
- {/* Form Status */}
- {formStatus && (
-          <div className="mt-8 text-center">
-            <p className="text-xl font-semibold text-gray-600">{formStatus}</p>
-          </div>
-        )}
+ 
         </div>
 
        
 
         {/* Contact Info Section */}
-        <div className="mt-16 text-center">
-          <h2 className="text-3xl font-semibold text-gray-800">Our Location</h2>
-          <p className="mt-4 text-lg text-gray-600">
+        <div className="pt-16 py-5 md:pb-16 md:mt-20 text-center md:w-1/2 flex flex-col items-center border-2">
+          <h2 className="text-3xl font-semibold text-black/70">Our Location</h2>
+          <p className="mt-4 text-lg text-gray-800">
             You can also reach us at:
           </p>
-          <p className="mt-2 text-lg text-gray-600">
-            <span className="font-semibold">Email:</span> contact@runo.com
+          <p className="mt-2 text-lg text-gray-800 flex items-center gap-4">
+            <span className="font-semibold"><Mail /></span> contact@runo.com
           </p>
-          <p className="mt-2 text-lg text-gray-600">
-            <span className="font-semibold">Phone:</span> +123 456 7890
+          <p className="mt-2 text-lg text-gray-800 flex items-center gap-4">
+            <span className="font-semibold"><Phone /></span> +123 456 7890
           </p>
         </div>
 

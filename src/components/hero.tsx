@@ -47,15 +47,15 @@ export default function Hero() {
   return (
     <>
      <Slider images={images} />
-      <div className="md:px-14 px-2 py-8 md:pt-28 pt-12 bg-gray-200">
-        <h1 className="mb-6 text-center text-4xl font-bold text-gray-800 sm:text-5xl">Latest Blogs</h1>
+      <div className="md:px-14 px-2 py-8  pt-12 bg-gray-300">
+        <h1 className="mb-20 text-center text-4xl font-bold text-gray-800 sm:text-5xl">Latest Blogs</h1>
       
         {blogs.length > 0 ? <Cards blogs={latestBlogs} /> : <Loader />}
 
         {blogs.length > 0 && (
           <div className="mt-8 text-center">
             <a href="/blogs">
-              <Button variant="outline" className="md:w-1/2 w-full hover:bg-gray-500">View More</Button>
+              <Button variant="outline" className="md:w-[30%] w-full hover:bg-blue-400 border-2 border-gray-400 font-semibold">View More</Button>
             </a>
           </div>
         )}

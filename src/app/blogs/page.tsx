@@ -44,8 +44,8 @@ export default function Blogs() {
   return (
     <>
     <Slider images={blogImages} />
-    <div className="md:px-14 px-2 py-8 md:pt-28 pt-12 bg-gray-200">
-      <h1 className="mb-6 text-center text-4xl font-bold text-gray-800 sm:text-5xl">All Blogs</h1>
+    <div className="md:px-14 px-2 py-8 pt-12 bg-gray-300">
+      <h1 className="mb-20 text-center text-4xl font-bold text-gray-800 sm:text-5xl">All Blogs</h1>
       {blogs.length > 0 ? (
         <Cards blogs={blogs}/>
       ) : (

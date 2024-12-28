@@ -6,8 +6,10 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { AlignJustify } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+import { useState } from "react";
+import Loader from "./loader";
 
 export default function Header() {
   const navLinks = [
@@ -19,7 +21,25 @@ export default function Header() {
 
   const pathname = usePathname();
 
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleNavigation = (event: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    if (pathname === path) return; // Avoid reloading the same page
+    event.preventDefault(); // Prevent default link behavior
+    setIsLoading(true); // Show loader
+    setTimeout(() => {
+      window.location.href = path; // Navigate after a delay
+    }, 500); // Adjust delay as needed
+  };
+
   return (
+    <>
+    {isLoading && (
+        <div className="fixed top-0 left-0 right-0 bottom-0 z-50 bg-black bg-opacity-50 flex justify-center items-center">
+          <Loader />
+        </div>
+      )}
     <section className="flex justify-around items-center h-[6rem] backdrop-blur-sm mx-auto bg-transparent fixed top-0 left-0 right-0 z-50">
       <div className="mr-32 lg:mr-0 text-white text-2xl font-extrabold">
         RUNO
@@ -32,6 +52,7 @@ export default function Header() {
             <li>
               <Link
                 href={link.path}
+                onClick={(event) => handleNavigation(event, link.path)}
                 aria-current={pathname === link.path ? "page" : undefined}
                 className="p-4 px-6 text-white hover:text-gray-500 rounded-lg transition duration-300 ease-in-out relative group"
               >
@@ -58,7 +79,7 @@ export default function Header() {
     
     
     
-      <div className="md:hidden m-6">
+      <div className="lg:hidden m-6">
         <Sheet>
           <SheetTrigger asChild>
             <AlignJustify color="white" />
@@ -84,5 +105,7 @@ export default function Header() {
         </Sheet>
       </div>
     </section>
+    </>
+    
   );
 }
