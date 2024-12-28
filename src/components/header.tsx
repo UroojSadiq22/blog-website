@@ -21,7 +21,6 @@ export default function Header() {
 
   const pathname = usePathname();
 
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleNavigation = (event: React.MouseEvent<HTMLAnchorElement>, path: string) => {
