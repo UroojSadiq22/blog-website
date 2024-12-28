@@ -221,7 +221,7 @@ function genId() {
   return count.toString();
 }
 
-type ActionType = ActionTypes;
+// type ActionType = ActionTypes;
 
 type Action =
   | {

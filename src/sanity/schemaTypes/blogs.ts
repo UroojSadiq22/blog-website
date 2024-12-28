@@ -1,4 +1,4 @@
-export default {
+const blogPostSchema ={
     name: "blogPost", // Unique identifier for the schema
     type: "document", // Document type schema
     title: "Blog Post", // Displayed name in Sanity Studio
@@ -28,4 +28,4 @@ export default {
       },
     ],
   };
-  
+  export default blogPostSchema;
